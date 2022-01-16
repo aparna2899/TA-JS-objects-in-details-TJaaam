@@ -47,10 +47,10 @@ function createQuestion(title,options,correctAnswerIndex){
     question.options = options;
     question.correctAnswerIndex = correctAnswerIndex;
     question.isAnswerCorrect = function(index){
-        return index === correctAnswerIndex;
+        return index === question.correctAnswerIndex;
     };
     question.getCorrectAnswer = function(){
-        return options[correctAnswerIndex];
+        return question.options[question.correctAnswerIndex];
     };
     return question;
 }
@@ -61,3 +61,25 @@ let question = createQuestion('Where is the capital of Jordan',['Tashkent', 'Amm
 question.isAnswerCorrect(1) // true
 question.getCorrectAnswer() // 'Amman'
 
+
+// Convert the function to use `this` keyword
+
+function createQuestion(title,options,correctAnswerIndex){
+    let question = {};
+    question.title = title;
+    question.options = options;
+    question.correctAnswerIndex = correctAnswerIndex;
+    question.isAnswerCorrect = function(index){
+        return index === this.correctAnswerIndex;
+    };
+    question.getCorrectAnswer = function(){
+        return this.options[this.correctAnswerIndex];
+    };
+    return question;
+}
+
+// Test
+
+let question = createQuestion('Where is the capital of Jordan',['Tashkent', 'Amman', 'Kuwait City', 'Nairobi'],1)
+question.isAnswerCorrect(1) // true
+question.getCorrectAnswer() // 'Amman'
