@@ -50,8 +50,10 @@ sandra.greet(); //-> Logs 'hello'
 
 /*** CHALLENGE 3 of 3 ***/
 
-// add code here
-// sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
+personStore.introduce = function () {
+  console.log(`Hi, my name is ${this.name}`);
+}
+sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
 
 /****************************************************************
                     USING THE 'NEW' KEYWORD
@@ -60,7 +62,8 @@ sandra.greet(); //-> Logs 'hello'
 /*** CHALLENGE 1 of 3 ***/
 
 function PersonConstructor() {
-  this.greet = () => console.log('hello')
+  this.greet = () => console.log('hello');
+  this.introduce = () => console.log(`Hi, my name is ${this.name}`)
 }
 
 // /********* Uncomment this line to test your work! *********/
@@ -70,8 +73,10 @@ simon.greet(); // -> Logs 'hello'
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromConstructor(name, age) {
-  this.name = name;
-  this.age = age;
+  let person = new PersonConstructor();
+  person.name = name;
+  person.age = age;
+  return person;
 }
 
 var mike = new personFromConstructor('Mike', 30);
@@ -79,11 +84,11 @@ var mike = new personFromConstructor('Mike', 30);
 // /********* Uncomment these lines to test your work! *********/
 console.log(mike.name); // -> Logs 'Mike'
 console.log(mike.age); //-> Logs 30
-// mike.greet(); //-> Logs 'hello'
+mike.greet(); //-> Logs 'hello'
 
 /*** CHALLENGE 3 of 3 ***/
 
-// mike.introduce(); // -> Logs 'Hi, my name is Mike'
+mike.introduce(); // -> Logs 'Hi, my name is Mike'
 
 /****************************************************************
                         USING ES6 CLASSES
@@ -138,16 +143,20 @@ function userFactory(name, score) {
   return user;
 }
 
-var adminFunctionStore = Object.assign(userFunctionStore);
+var adminFunctionStore = Object.create(userFunctionStore);
 
 function adminFactory(name, score) {
- 
+ let admin = userFactory(name, score);
+ Object.setPrototypeOf(admin, adminFunctionStore);
+ admin.type = 'Admin';
+ return admin;
 }
 
-/* Put code here for a method called sharePublicMessage*/
-
+adminFunctionStore.sharePublicMessage = function () {
+  console.log(`Welcome User!`);
+}
 var adminFromFactory = adminFactory('Eva', 5);
 
 // /********* Uncomment these lines to test your work! *********/
-// adminFromFactory.sayType() // -> Logs "I am a Admin"
-// adminFromFactory.sharePublicMessage() // -> Logs "Welcome users!"
+adminFromFactory.sayType() // -> Logs "I am a Admin"
+adminFromFactory.sharePublicMessage() // -> Logs "Welcome users!"
