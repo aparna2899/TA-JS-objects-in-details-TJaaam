@@ -39,7 +39,7 @@ console.log(user.sayHello.bind(user2)()); // Hello Arya
 console.log(userSayHello()); // Hello undefined
 console.log(typeof userSayHello.bind(user2)); // function
 console.log(userSayHello.bind(user2)()); // Hello Arya
-console.log(user3.sayHello()); //user3.sayHello is not a function
+console.log(user3.sayHello()); // TypeError: user3.sayHello is not a function
 console.log(userSayHello.apply(user3)); // Hello Bran
 console.log(userSayHello.call(user3)); // Hello Bran
 console.log(typeof new MainUser()); // object
