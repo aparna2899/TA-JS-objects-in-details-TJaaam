@@ -31,8 +31,8 @@ Getter
 
 ```js
 let myStack = new Stack();
-myStack.push('One');
-myStack.push('Two');
+myStack.push("One");
+myStack.push("Two");
 console.log(myStack.length); // 2
 console.log(myStack.peek()); // "Two"
 console.log(myStack.peek(0)); // "One"
@@ -57,20 +57,20 @@ Methods:
 - `enqueue`(item): Adds the item at the end of the queue
 - `dequeue`: Removes an item from the top of the queue
 - `peek`: can accept and optional parameter. Will display the element at the given index(passed as argument). If nothing is passed display the first element from top (index 0)
-- `isEmpty`: returns `true` if the stack is empty and `false` if the stack has any data.
-- `displayQueue`: returns all the data in stack in string format
+- `isEmpty`: returns `true` if the queue is empty and `false` if the queue has any data.
+- `displayQueue`: returns all the data in queue in string format
 
 Getter
 
-- `length`: returns the current length of the stack.
+- `length`: returns the current length of the queue.
 
 #### Test
 
 ```js
 let atmQueue = new Queue();
-atmQueue.enqueue('Aman');
-atmQueue.enqueue('John');
-atmQueue.enqueue('Rohan');
+atmQueue.enqueue("Aman");
+atmQueue.enqueue("John");
+atmQueue.enqueue("Rohan");
 console.log(atmQueue.displayQueue()); // "Aman John Rohan"
 console.log(atmQueue.length); // 3
 console.log(atmQueue.peek()); // "Aman"
